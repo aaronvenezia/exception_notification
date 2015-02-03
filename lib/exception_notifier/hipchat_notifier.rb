@@ -10,7 +10,8 @@ module ExceptionNotifier
         api_token         = options.delete(:api_token)
         room_name         = options.delete(:room_name)
         opts              = {
-                              :api_version => options.delete(:api_version) || 'v1'
+                              :api_version => options.delete(:api_version) || 'v1',
+                              :server_url => options.delete(:server_url) || nil
                             }
         @from             = options.delete(:from) || 'Exception'
         @room             = HipChat::Client.new(api_token, opts)[room_name]
