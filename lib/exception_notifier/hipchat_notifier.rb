@@ -16,7 +16,7 @@ module ExceptionNotifier
         @from             = options.delete(:from) || 'Exception'
         @room             = HipChat::Client.new(api_token, opts)[room_name]
         @message_template = options.delete(:message_template) || ->(exception) {
-          "A new exception occurred: '#{exception.message}' on '#{exception.backtrace.first}'"
+          "Exception: '#{exception.message.split('<').join('').split('>').join('')}' on '#{exception.backtrace.first}'"
         }
         @message_options  = options
         @message_options[:color] ||= 'red'
