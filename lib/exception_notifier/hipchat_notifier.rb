@@ -16,7 +16,6 @@ module ExceptionNotifier
         @from             = options.delete(:from) || 'Exception'
         @room             = HipChat::Client.new(api_token, opts)[room_name]
         @message_template = options.delete(:message_template) || ->(exception, the_options) {
-          puts the_options[:env]['exception_notifier.exception_data']
           if the_options
             data = the_options[:env]['exception_notifier.exception_data']
             "User: #{data[:user]} from #{data[:company]} Getting Exception: '#{exception.message.split('<').join('').split('>').join('')}' on '#{exception.backtrace.first}'"
